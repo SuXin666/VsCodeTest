@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>删除留言案例</title>
+    <style>
+      li {
+        list-style: none;
+      }
+      ul li {
+        width: 200px;
+        margin-top: 10px;
+        background-color: pink;
+        color: red;
+      }
+      ul li a {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea name="" id=""></textarea>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+      var btn = document.querySelector('button')
+      var text = document.querySelector('textarea')
+      var ul = document.querySelector('ul')
+      btn.onclick = function () {
+        if (text.value == '') {
+          alert('您没有输入内容！！！')
+          return false
+        } else {
+          var li = document.createElement('li')
+          li.innerHTML = text.value + '<a href="javascript:;">删除</a>'
+          // ul.appendChild(li)：留言放到最后
+          // 留言放到最前面
+          ul.insertBefore(li, ul.children[0])
+          // 删除元素
+          var as = document.querySelectorAll('a')
+          for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
+              ul.removeChild(this.parentNode)
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
